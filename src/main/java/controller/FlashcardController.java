@@ -15,6 +15,7 @@ import service.FlashcardService;
 import entity.Flashcard;
 
 @Controller
+@RequestMapping("/card/*")
 public class FlashcardController {
  
     @Autowired
@@ -29,21 +30,21 @@ public class FlashcardController {
         return "flashcard";
     }
  
-    @RequestMapping(value = "/addflashcard", method = RequestMethod.POST)
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String addFlashcard(@ModelAttribute("flashcard")
     Flashcard flashcard, BindingResult result) {
  
         flashcardSvc.addFlashcard(flashcard);
  
-        return "redirect:/cards";
+        return "redirect:/card/cards";
     }
  
-    @RequestMapping("/deletecard/{flashcardId}")
+    @RequestMapping("/delete/{flashcardId}")
     public String deleteFlashcard(@PathVariable("flashcardId")
     Integer flashcardId) {
  
         flashcardSvc.deleteFlashcard(flashcardId);
  
-        return "redirect:/cards";
+        return "redirect:/card/cards";
     }
 }

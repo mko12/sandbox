@@ -15,6 +15,7 @@ import service.UserService;
 import entity.User;
 
 @Controller
+@RequestMapping("/user/*")
 public class UserController {
  
     @Autowired
@@ -29,21 +30,21 @@ public class UserController {
         return "user";
     }
  
-    @RequestMapping(value = "/adduser", method = RequestMethod.POST)
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String addUser(@ModelAttribute("user")
     User user, BindingResult result) {
  
         userSvc.addUser(user);
  
-        return "redirect:/users";
+        return "redirect:/user/users";
     }
  
-    @RequestMapping("/deleteuser/{userId}")
+    @RequestMapping("/delete/{userId}")
     public String deleteUser(@PathVariable("userId")
     Integer userId) {
  
         userSvc.deleteUser(userId);
  
-        return "redirect:/users";
+        return "redirect:/user/users";
     }
 }

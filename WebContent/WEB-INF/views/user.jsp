@@ -8,15 +8,13 @@
 <body>
  
 <h2>User Manager</h2>
-<a href="cards">Go to Flashcard Management</a>
+<a href="../card/cards">Go to Flashcard Management</a>
 <br/>
-<form:form method="post" action="adduser.html" commandName="user">
- 
+<form:form method="post" action="add.html" commandName="user">
     <table>
     <tr>
         <td><form:label path="username"><spring:message code="label.username"/></form:label></td>
         <td><form:input path="username" /></td>
- 
     </tr>
     <tr>
         <td><form:label path="password"><spring:message code="label.password"/></form:label></td>
@@ -31,7 +29,7 @@
             <input type="submit" value="<spring:message code="label.adduser"/>"/>
         </td>
     </tr>
-</table> 
+	</table> 
 </form:form>
  
      
@@ -49,8 +47,8 @@
     	<td>${user.username}</td>
         <td>${user.email}</td>
         <td>${user.password}</td>
-        <td><a href="updateuser/${user.id}">Update</a></td>
-        <td><a href="deleteuser/${user.id}">delete</a></td>
+        <td><a href="update/${user.id}">Update</a></td>
+        <td><a href="delete/${user.id}">delete</a></td>
     </tr>
 </c:forEach>
 </table>

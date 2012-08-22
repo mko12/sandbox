@@ -4,6 +4,7 @@ import java.util.Map;
  
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,10 +27,22 @@ public class UserController {
  
         map.put("user", new User());
         map.put("userList", userSvc.getUsers());
- 
         return "user";
     }
  
+    
+    @RequestMapping("/details/{userId}")
+    public String getUserDetails(@PathVariable("userId")
+    Integer userId, Model model) {
+  //  Map<String, Object> map) {
+  	
+    //	  map.put("user", userSvc.getUser(userId));
+     //     map.put("userId", Integer.toString(userId));
+    	model.addAttribute("userId", Integer.toString(userId)); 
+    	model.addAttribute("user", userSvc.getUser(userId));
+        return "userdetails";
+    }
+    
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String addUser(@ModelAttribute("user")
     User user, BindingResult result) {

@@ -3,14 +3,13 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
-    <title>User Management</title>
+    <title>User Details</title>
 </head>
 <body>
  
-<h2>User Manager</h2>
-<a href="../card/cards">Go to Flashcard Management</a>
-<br/>
-<form:form method="post" action="add.html" commandName="user">
+<h2>User details for user with id: ${userId}</h2>
+
+<%-- <form:form method="post" action="update.html" commandName="user">
     <table>
     <tr>
         <td><form:label path="username"><spring:message code="label.username"/></form:label></td>
@@ -26,33 +25,24 @@
     </tr>
     <tr>
         <td colspan="2">
-            <input type="submit" value="<spring:message code="label.adduser"/>"/>
+            <input type="submit" value="<spring:message code="label.updateuser"/>"/>
         </td>
     </tr>
 	</table> 
 </form:form>
- 
-     
-<h3>Users</h3>
-<c:if  test="${!empty userList}">
+ -->
+ <!-- 
 <table class="data">
 <tr>
-    <th><spring:message code="label.username"/></th>
-    <th><spring:message code="label.password"/></th>
-    <th><spring:message code="label.email"/></th>
+    <th><spring:message code="label.username"/>${user.username}</th>
+    <th><spring:message code="label.password"/>${user.password}</th>
+    <th><spring:message code="label.email"/>${user.email}</th>
     <th>&nbsp;</th>
 </tr>
-<c:forEach items="${userList}" var="user">
-    <tr>
-    	<td>${user.username}</td>
-        <td>${user.email}</td>
-        <td>${user.password}</td>
-        <td><a href="details/${user.id}">Update</a></td>
-        <td><a href="delete/${user.id}">delete</a></td>
-    </tr>
-</c:forEach>
 </table>
-</c:if>
- 
+ --%>
+<br/>
+<a href="/user/users">Go back to User Management</a>
+<br/>
 </body>
 </html>

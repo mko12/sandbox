@@ -1,9 +1,13 @@
 package entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -13,18 +17,28 @@ public class User {
 	@Id
 	@GeneratedValue
 	@Column(name="id")
-	public int id;
+	private int id;
 	
 	@Column(name="username")
-	public String username;
+	private String username;
 	
 	@Column(name="password")
-	public String password;
+	private String password;
 	
 	@Column(name="email")
-	public String email;
+	private String email;
 
+	@OneToMany (mappedBy="user")
+	private List<Flashcard> flashcards = new ArrayList<Flashcard>();
 	
+	public List<Flashcard> getFlashcards() {
+		return flashcards;
+	}
+
+	public void setFlashcards(List<Flashcard> flashcards) {
+		this.flashcards = flashcards;
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -56,4 +70,10 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}	
+	
+	@Override
+	public String toString() {
+		return username;
+	}
 }
+

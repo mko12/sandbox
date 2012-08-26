@@ -62,6 +62,8 @@
             <props>
                 <prop key="hibernate.dialect">${jdbc.dialect}</prop>
                 <prop key="hibernate.show_sql">true</prop>
+                    <!-- Hibernate will drop and re-create the db schema on startup when set to 'create', otherwise set to 'update' -->
+    			<prop key="hibernate.hbm2ddl.auto">create</prop> 
             </props>
         </property>
     </bean>

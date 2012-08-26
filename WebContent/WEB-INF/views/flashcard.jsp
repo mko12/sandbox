@@ -26,6 +26,12 @@
         <td><form:label path="answer"><spring:message code="label.answer"/></form:label></td>
         <td><form:input path="answer" /></td>
     </tr>
+    
+    <tr>
+        <td><form:label path="user"><spring:message code="label.user"/></form:label></td>
+   		<td><form:select path="user" items="${userList}" />
+    </tr>
+   
     <tr>
         <td colspan="2">
             <input type="submit" value="<spring:message code="label.addflashcard"/>"/>

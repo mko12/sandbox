@@ -42,7 +42,7 @@
 </table>
  --%>
 <br/>
-<a href="/user/users">Go back to User Management</a>
+<a href="../users">Go back to User Management</a>
 <br/>
 </body>
 </html>

@@ -31,9 +31,13 @@ public class FlashcardServiceImpl implements FlashcardService {
 		return flashcardDAO.getFlashcard(id);
 	}
 	
+	@Transactional
+	public void updateFlashcard(Flashcard card) {
+		flashcardDAO.updateFlashcard(card);
+	}
+	
     @Transactional
     public void deleteFlashcard(int id) {
         flashcardDAO.deleteFlashcard(id);
     }
-
 }

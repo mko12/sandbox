@@ -30,6 +30,12 @@ public class FlashcardDAOImpl implements FlashcardDAO {
 		return card; 
 	}
 	
+	
+	public void updateFlashcard(Flashcard card) {
+		sessionFactory.getCurrentSession().update(card);
+	}
+
+	
 	public void deleteFlashcard(int id) {
 		Flashcard flashcard = (Flashcard) sessionFactory.getCurrentSession()
 				.load(Flashcard.class, id);

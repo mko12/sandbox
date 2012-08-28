@@ -45,10 +45,10 @@
 <c:forEach items="${userList}" var="user">
     <tr>
     	<td>${user.username}</td>
+    	<td>${user.password}</td>
         <td>${user.email}</td>
-        <td>${user.password}</td>
-        <td><a href="details/${user.id}">Update</a></td>
-        <td><a href="delete/${user.id}">delete</a></td>
+        <td><a href="details/${user.userId}">Update</a></td>
+        <td><a href="delete/${user.userId}">delete</a></td>
     </tr>
 </c:forEach>
 </table>

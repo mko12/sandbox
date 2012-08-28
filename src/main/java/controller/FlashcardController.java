@@ -2,6 +2,7 @@ package controller;
  
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -53,9 +54,7 @@ public class FlashcardController {
     public String addFlashcard(@ModelAttribute("flashcard")
     Flashcard flashcard, BindingResult result) {
  
-        
         flashcardSvc.addFlashcard(flashcard);
- 
         return "redirect:/card/cards";
     }
  
@@ -64,7 +63,15 @@ public class FlashcardController {
     Integer flashcardId) {
  
         flashcardSvc.deleteFlashcard(flashcardId);
- 
         return "redirect:/card/cards";
+    }
+    
+    @RequestMapping("/details/{id}")
+    public String geFlashcardDetails(@PathVariable("id")
+    Integer id, Model model) {
+  
+    	model.addAttribute("id", Integer.toString(id)); 
+    	model.addAttribute("flashcard", flashcardSvc.getFlashcard(id));
+        return "flashcarddetails";
     }
 }

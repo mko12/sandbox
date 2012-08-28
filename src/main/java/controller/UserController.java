@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
  
 import service.UserService;
 
@@ -31,7 +32,7 @@ public class UserController {
     }
  
     
-    @RequestMapping("/details/{userId}")
+/**    @RequestMapping("/details/{userId}")
     public String getUserDetails(@PathVariable("userId")
     Integer userId, Model model) {
   //  Map<String, Object> map) {
@@ -42,6 +43,26 @@ public class UserController {
     	model.addAttribute("user", userSvc.getUser(userId));
         return "userdetails";
     }
+    */
+    
+    /**
+	 * Edit an existing User
+	 * 
+	 * @param userid
+	 * @return
+	 */
+	@RequestMapping(value="/details/{userId}", method=RequestMethod.GET)
+    public ModelAndView getUserDetails(@PathVariable("userId") Integer userId) { 
+		
+		User user = userSvc.getUser(userId);
+	
+		ModelAndView mav = new ModelAndView("userdetails");
+		mav.addObject("user", user);
+        mav.addObject("userId", Integer.toString(userId));
+        
+        return mav;
+    }
+	
     
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String addUser(@ModelAttribute("user")

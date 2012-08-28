@@ -16,8 +16,8 @@ public class User {
 
 	@Id
 	@GeneratedValue
-	@Column(name="id")
-	private int id;
+	@Column(name="userId")
+	private int userId;
 	
 	@Column(name="username")
 	private String username;
@@ -39,12 +39,12 @@ public class User {
 		this.flashcards = flashcards;
 	}
 
-	public int getId() {
-		return id;
+	public int getUserId() {
+		return userId;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 
 	public String getUsername() {

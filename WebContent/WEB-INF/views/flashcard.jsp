@@ -29,7 +29,7 @@
     
     <tr>
         <td><form:label path="user"><spring:message code="label.user"/></form:label></td>
-   		<td><form:select path="user" items="${userList}" />
+   		<td><form:select path="user" items="${userList}" itemValue="userId"/>
     </tr>
    
     <tr>
@@ -55,7 +55,7 @@
         <td>${card.topic}</td>
         <td>${card.question}</td>
         <td>${card.answer}</td>
-        <td><a href="update/${card.id}">Update</a></td>
+        <td><a href="details/${card.id}">Update</a></td>
         <td><a href="delete/${card.id}">delete</a></td>
     </tr>
 </c:forEach>

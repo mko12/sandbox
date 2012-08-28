@@ -1,5 +1,4 @@
 package entity;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -28,7 +27,7 @@ public class Flashcard {
 	
 	/** TODO: Not sure why I had to do insertable and updatable false, possibly cause same name 'id'? */
 	@ManyToOne
-	@JoinColumn(name = "user_id")
+	@JoinColumn(name = "userId")
 	private User user; 
 
 	public User getUser() {

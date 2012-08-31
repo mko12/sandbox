@@ -40,4 +40,12 @@ public class UserDAOImpl implements UserDAO {
 		}
 
 	}
+
+	public User verifyUser(User user) {
+		User verifiedUser = (User) sessionFactory.getCurrentSession()
+				.load(User.class, user.getUsername());
+		if (user.getPassword() == verifiedUser.getPassword())
+				return verifiedUser;	
+		else return null;
+	}
 }

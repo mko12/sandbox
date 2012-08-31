@@ -40,4 +40,9 @@ public class UserServiceImpl implements UserService {
     public void deleteUser(int id) {
         userDAO.deleteUser(id);
     }
+
+    @Transactional
+	public User verifyUser(User user) {
+		return userDAO.verifyUser(user);
+	}
 }

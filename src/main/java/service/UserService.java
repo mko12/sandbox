@@ -12,5 +12,5 @@ public interface UserService {
 	public User getUser(int id);
 	public void updateUser(User user);
     public void deleteUser(int id);
-       
+	public User verifyUser(User user);
 }

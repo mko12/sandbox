@@ -2,6 +2,7 @@ package dao;
 
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -13,28 +14,29 @@ public class UserDAOImpl implements UserDAO {
 
 	@Autowired
 	private SessionFactory sessionFactory;
-	
+
 	public void addUser(User user) {
 		sessionFactory.getCurrentSession().save(user);
 	}
 
 	public List<User> getAllUsers() {
-		return sessionFactory.getCurrentSession().createQuery("from User").list();
-	}
-
-	public User getUser(int id) {
-		
-		User user = (User)sessionFactory.getCurrentSession().load(User.class, id);
-		return user; 
+		return sessionFactory.getCurrentSession().createQuery("from User")
+				.list();
 	}
 	
+	public User getUser(int id) {
+		Query query = sessionFactory.getCurrentSession().createQuery("from User where id = :id");
+		query.setParameter("id", id);
+		return (User)query.uniqueResult();
+	}
+
 	public void updateUser(User user) {
 		sessionFactory.getCurrentSession().update(user);
 	}
-	
+
 	public void deleteUser(int id) {
-		User user = (User) sessionFactory.getCurrentSession()
-				.load(User.class, id);
+		User user = (User) sessionFactory.getCurrentSession().load(User.class,
+				id);
 		if (null != user) {
 			sessionFactory.getCurrentSession().delete(user);
 		}
@@ -42,10 +44,13 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	public User verifyUser(User user) {
-		User verifiedUser = (User) sessionFactory.getCurrentSession()
-				.load(User.class, user.getUsername());
-		if (user.getPassword() == verifiedUser.getPassword())
-				return verifiedUser;	
-		else return null;
+		Query query = sessionFactory.getCurrentSession().createQuery(
+				"from User where username = :username");
+		query.setParameter("username", user.getUsername());
+		User verifiedUser = (User) query.uniqueResult();
+	//	if (user.getPassword() == verifiedUser.getPassword())
+			return verifiedUser;
+	//	else
+	//		return null;
 	}
 }

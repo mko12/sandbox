@@ -8,7 +8,8 @@
 <body>
  
 <h2>Flashcard Manager</h2>
-<a href="../user/users">Go to User Management</a>
+<br/>
+Go to <a href="<c:url value='/user/users' />">User Management</a>
 <br/>
  
 <form:form method="post" action="add.html" commandName="flashcard">
@@ -55,8 +56,8 @@
         <td>${card.topic}</td>
         <td>${card.question}</td>
         <td>${card.answer}</td>
-        <td><a href="details/${card.id}">Update</a></td>
-        <td><a href="delete/${card.id}">delete</a></td>
+        <td><a href="/ihelp/card/details/${card.id}">Update</a></td>
+        <td><a href="/ihelp/card/delete/${card.id}">delete</a></td>
     </tr>
 </c:forEach>
 </table>

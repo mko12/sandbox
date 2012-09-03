@@ -7,39 +7,31 @@
 </head>
 <body>
 	<h2>User details for user with id: ${userId}</h2>
+	<br />
+	<br /> Go to
+	<a href="<c:url value='user/users' />">User Management</a>
+	<br />
+	<br />
+	<form:form method="POST" action="/user/update"
+		commandName="user">
+		<form:hidden path="userId" />
+		<label><spring:message code="label.username" />: ${user.username}</label>
+		
+		<br />
+		<br />
+		<label><spring:message code="label.password" />:</label>
+		<form:input path="password" size="50" maxlength="50" />
+		<br />
+		<br />
+		<label><spring:message code="label.email" />:</label>
+		<form:input path="email" size="50" maxlength="50" />
+		<br />
+		<br />
 
-	<form:form method="POST" action="/user/update">
-		<c:if test="${!empty user}">
-			<table width="100%" cellspacing="3" cellpadding="3" border=0>
-				<tr>
-					<td><spring:message code="label.username" /></td>
-					<%--		<td><input type="text" name="name" value="${user.username}" /></td>
-		 --%>
-				</tr>
-				<tr>
-					<td><spring:message code="label.password" /></td>
-					<%--		<td><input type="text" name="name" value="${user.username}" /></td>
-		 --%>
-				</tr>
-				<tr>
-					<td><spring:message code="label.email" /></td>
-					<%--		<td><input type="text" name="name" value="${user.username}" /></td>
-		 --%>
-				</tr>
-				<tr>
-					<td><br />
-						<div class="buttons">
-							<button type=submit name="submit">Save</button>
-							<a href="<c:url value='/user/users' />"> Cancel </a>
-						</div></td>
-				</tr>
-			</table>
-		</c:if>
-		<h3>
-			is it empty?
-			<c:out value="${user}" />
-			end
-		</h3>
+		<button type="submit" name="submit">Save Update</button>
+&nbsp;&nbsp;&nbsp;
+<a href="<c:url value='/user/users' />"> Cancel </a>
+
 	</form:form>
 </body>
 </html>

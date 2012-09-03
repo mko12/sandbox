@@ -8,7 +8,8 @@
 <body>
  
 <h2>User Manager</h2>
-<a href="../card/cards">Go to Flashcard Management</a>
+<br/>
+Go to <a href="<c:url value='/card/cards' />">Flashcard Management</a>
 <br/>
 <form:form method="post" action="add.html" commandName="user">
     <table>

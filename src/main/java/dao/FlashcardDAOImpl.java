@@ -2,6 +2,7 @@ package dao;
 
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -24,10 +25,10 @@ public class FlashcardDAOImpl implements FlashcardDAO {
 	}
 
 
-	public Flashcard getFlashcard(int id) {
-		
-		Flashcard card = (Flashcard)sessionFactory.getCurrentSession().load(Flashcard.class, id);
-		return card; 
+	public Flashcard getFlashcard(int cardId) {
+		Query query = sessionFactory.getCurrentSession().createQuery("from Flashcard where id = :id");
+		query.setParameter("id", cardId);
+		return (Flashcard)query.uniqueResult();
 	}
 	
 	

@@ -3,18 +3,35 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
-    <title>Flashcard Details</title>
+<title>Flashcard Details</title>
 </head>
 <body>
- 
-<h2>Flashcard Details for flashcard with id: ${cardId}</h2>
-<a href="../card/cards">Go to Flashcard Management</a>
-<br/>
-<h3>
-    <spring:message code="label.topic"/>${flashcard.topic}
-    <spring:message code="label.question"/>${flashcard.question}
-    <spring:message code="label.answer"/>${flashcard.answer}
-</h3>
- 
+	<h2>Flashcard Details for flashcard id: ${flashcard.id}</h2>
+	<br />
+	<br /> Go to
+	<a href="<c:url value='/card/cards' />">Flashcard Management</a>
+	<br />
+	<br />
+	<form:form method="POST" action="/ihelp/card/card"
+		commandName="flashcard">
+		<form:hidden path="id" />
+		<label><spring:message code="label.topic" />:</label>
+		<form:input path="topic" size="50" maxlength="50" />
+		<br />
+		<br />
+		<label><spring:message code="label.question" />:</label>
+		<form:input path="question" size="50" maxlength="50" />
+		<br />
+		<br />
+		<label><spring:message code="label.answer" />:</label>
+		<form:input path="answer" size="50" maxlength="50" />
+		<br />
+		<br />
+
+		<button type="submit" name="submit">Save Update</button>
+&nbsp;&nbsp;&nbsp;
+<a href="<c:url value='/card/cards' />"> Cancel </a>
+
+	</form:form>
 </body>
 </html>

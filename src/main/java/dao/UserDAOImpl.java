@@ -47,10 +47,6 @@ public class UserDAOImpl implements UserDAO {
 		Query query = sessionFactory.getCurrentSession().createQuery(
 				"from User where username = :username");
 		query.setParameter("username", user.getUsername());
-		User verifiedUser = (User) query.uniqueResult();
-	//	if (user.getPassword() == verifiedUser.getPassword())
-			return verifiedUser;
-	//	else
-	//		return null;
+		return (User) query.uniqueResult();
 	}
 }

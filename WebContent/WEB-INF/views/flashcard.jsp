@@ -9,6 +9,8 @@
  
 <h2>Flashcard Manager</h2>
 <br/>
+ <h4>Logged in as: ${name}</h4>
+ <br />
 Go to <a href="<c:url value='/user/users' />">User Management</a>
 <br/>
  
@@ -40,8 +42,6 @@ Go to <a href="<c:url value='/user/users' />">User Management</a>
     </tr>
 </table> 
 </form:form>
- 
-     
 <h3>Flashcards</h3>
 <c:if  test="${!empty flashcardList}">
 <table class="data">

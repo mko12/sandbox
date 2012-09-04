@@ -10,6 +10,9 @@
 	<h2>Login Failed</h2>
 
 	<br />
+	<h4>Could not login as: ${name}</h4>
+	<h5>due to: ${loginStatus}</h5>
+
 	<br /> Back to the
 	<a href="login">login page</a>
 	<br />

@@ -9,7 +9,7 @@
 	<h2>User details for user with id: ${userId}</h2>
 	<br />
 	<br /> Go to
-	<a href="<c:url value='user/users' />">User Management</a>
+	<a href="<c:url value='/user/users' />">User Management</a>
 	<br />
 	<br />
 	<form:form method="POST" action="/user/update"

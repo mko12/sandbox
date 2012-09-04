@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import utils.LoginStatus;
+
 import dao.UserDAO;
 
 import entity.User;
@@ -13,6 +15,8 @@ import entity.User;
 @Service
 public class UserServiceImpl implements UserService {
 
+	private LoginStatus loginStatus;
+	
 	@Autowired
 	private UserDAO userDAO;
 	
@@ -43,6 +47,29 @@ public class UserServiceImpl implements UserService {
 
     @Transactional
 	public User verifyUser(User user) {
-		return userDAO.verifyUser(user);
+    	
+    	User loginUser = userDAO.verifyUser(user);
+    	this.setLoginStatus(LoginStatus.UNKNOWN);
+    	
+    	if (loginUser == null) {
+    		this.setLoginStatus(LoginStatus.UKNOWN_USER);
+    	} else {
+    		if (!user.getPassword().equals(loginUser.getPassword())) {
+    			this.setLoginStatus(LoginStatus.WRONG_PASSWORD);
+    			loginUser = null;
+    		} else {
+    			this.setLoginStatus(LoginStatus.SUCCESS);
+    		}
+    	}
+	
+    	return loginUser;
+	}
+
+	public void setLoginStatus(LoginStatus loginStatus) {
+		this.loginStatus = loginStatus;
+	}
+
+	public LoginStatus getLoginStatus() {
+		return loginStatus;
 	}
 }

@@ -9,10 +9,10 @@
 	<h2>Flashcard Details for flashcard id: ${flashcard.id}</h2>
 	<br />
 	<br /> Go to
-	<a href="<c:url value='/card/cards' />">Flashcard Management</a>
+	<a href="<c:url value='/ihelp/card/cards' />">Flashcard Management</a>
 	<br />
 	<br />
-	<form:form method="POST" action="/ihelp/card/card"
+	<form:form method="POST" action="/ihelp/card/update"
 		commandName="flashcard">
 		<form:hidden path="id" />
 		<label><spring:message code="label.topic" />:</label>
@@ -30,7 +30,7 @@
 
 		<button type="submit" name="submit">Save Update</button>
 &nbsp;&nbsp;&nbsp;
-<a href="<c:url value='/card/cards' />"> Cancel </a>
+<a href="<c:url value='/ihelp/card/cards' />"> Cancel </a>
 
 	</form:form>
 </body>

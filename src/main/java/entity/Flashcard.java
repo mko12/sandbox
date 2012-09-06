@@ -13,7 +13,7 @@ public class Flashcard {
 
 	@Id
 	@GeneratedValue
-	@Column(name="id")
+	@Column(name="fid")
 	public int id;
 	
 	@Column(name="question")
@@ -27,7 +27,7 @@ public class Flashcard {
 	
 	/** TODO: Not sure why I had to do insertable and updatable false, possibly cause same name 'id'? */
 	@ManyToOne
-	@JoinColumn(name = "userId")
+	@JoinColumn(name = "userid", insertable = false, updatable = false)
 	private User user; 
 
 	public User getUser() {

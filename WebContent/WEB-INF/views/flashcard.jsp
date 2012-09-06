@@ -14,7 +14,7 @@
 Go to <a href="<c:url value='/user/users' />">User Management</a>
 <br/>
  
-<form:form method="post" action="add.html" commandName="flashcard">
+<form:form method="post" action="/ihelp/card/add" commandName="flashcard">
  
     <table>
     <tr>
@@ -42,6 +42,7 @@ Go to <a href="<c:url value='/user/users' />">User Management</a>
     </tr>
 </table> 
 </form:form>
+
 <h3>Flashcards</h3>
 <c:if  test="${!empty flashcardList}">
 <table class="data">
@@ -56,7 +57,7 @@ Go to <a href="<c:url value='/user/users' />">User Management</a>
         <td>${card.topic}</td>
         <td>${card.question}</td>
         <td>${card.answer}</td>
-        <td><a href="/ihelp/card/details/${card.id}">Update</a></td>
+        <td><a href="/ihelp/card/${card.id}">Update</a></td>
         <td><a href="/ihelp/card/delete/${card.id}">delete</a></td>
     </tr>
 </c:forEach>

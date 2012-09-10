@@ -11,12 +11,12 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="USER")
+@Table(name="USERS")
 public class User {
 
 	@Id
 	@GeneratedValue
-	@Column(name="userId")
+	@Column(name="userid")
 	private int userId;
 	
 	@Column(name="username")

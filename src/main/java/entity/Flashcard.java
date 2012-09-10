@@ -25,7 +25,6 @@ public class Flashcard {
 	@Column(name="topic")
 	public String topic;
 	
-	/** TODO: Not sure why I had to do insertable and updatable false, possibly cause same name 'id'? */
 	@ManyToOne
 	@JoinColumn(name = "userId")
 	private User user; 
@@ -69,7 +68,4 @@ public class Flashcard {
 	public void setTopic(String topic) {
 		this.topic = topic;
 	}
-	
-	
-	
 }

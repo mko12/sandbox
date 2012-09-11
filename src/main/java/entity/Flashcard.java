@@ -26,7 +26,7 @@ public class Flashcard {
 	public String topic;
 	
 	@ManyToOne
-	@JoinColumn(name = "userid", insertable = false, updatable = false)
+	@JoinColumn(name = "userid")
 	private User user; 
 
 	public User getUser() {

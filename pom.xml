@@ -171,12 +171,6 @@
   		</dependency>
   		
   		 <dependency>
-  			<groupId>org.apache.shiro</groupId>
-  			<artifactId>shiro-web</artifactId>
-  			<version>1.2.1</version>
-  		</dependency>
-  		
-  		 <dependency>
             <groupId>displaytag</groupId>
             <artifactId>displaytag</artifactId>
             <version>1.2</version>

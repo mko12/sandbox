@@ -76,17 +76,19 @@
  
  <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
     <property name="securityManager" ref="securityManager"/>
+    <property name="loginUrl" value="/login.html"/>
+    <property name="unauthorizedUrl" value="/unauthorized.jsp"/>
     <!-- override these for application-specific URLs if you like:
     <property name="loginUrl" value="/login.jsp"/>
-    <property name="successUrl" value="/home.jsp"/>
-    <property name="unauthorizedUrl" value="/unauthorized.jsp"/> -->
+    <property name="successUrl" value="/home.jsp"/> -->
     
     <property name="filterChainDefinitions">
         <value>
           <!--   # some example chain definitions:
             /admin/** = authc, roles[admin]
             /docs/** = authc, perms[document:read] -->
-            /** = authc
+              /user/** = authc  
+          
          <!--    # more URL-to-FilterChain definitions here  -->
         </value>
     </property>
@@ -105,11 +107,11 @@
         <property name="name" value="jdbcRealm" />
         <property name="dataSource" ref="dataSource" />
         <property name="authenticationQuery"
-            value="SELECT password FROM system_user_accounts WHERE username=? and status=1" />
+            value="SELECT password FROM users WHERE username=?" />
         <property name="userRolesQuery"
-            value="SELECT role_name FROM system_roles r, system_user_accounts u, system_user_roles ur WHERE u.user_id=ur.user_id AND r.role_id=ur.role_id AND u.username=?" />
+            value="SELECT role_name FROM roles r, users u, system_user_roles ur WHERE u.user_id=ur.user_id AND r.role_id=ur.role_id AND u.username=?" />
         <property name="permissionsQuery"
-            value="SELECT permission_name FROM system_roles r, system_permissions p, system_role_permission rp WHERE r.role_id=rp.role_id AND p.permission_id=rp.permission_id AND r.role_name=?" />
+            value="SELECT permission_name FROM roles r, permissions p, system_role_permission rp WHERE r.role_id=rp.role_id AND p.permission_id=rp.permission_id AND r.role_name=?" />
         <property name="permissionsLookupEnabled" value="true"></property>
     </bean>
     

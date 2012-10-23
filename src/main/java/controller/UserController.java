@@ -70,7 +70,7 @@ public class UserController {
  
         userSvc.addUser(user);
  
-        return "redirect:/user/users";
+        return "redirect:/ihelp/user/users";
     }
  
     @RequestMapping("/delete/{userId}")
@@ -79,6 +79,6 @@ public class UserController {
  
         userSvc.deleteUser(userId);
  
-        return "redirect:/user/users";
+        return "redirect:/ihelp/user/users";
     }
 }

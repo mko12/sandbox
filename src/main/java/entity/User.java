@@ -19,14 +19,17 @@ public class User {
 	@Column(name="userid")
 	private int userId;
 	
-	@Column(name="username")
+	@Column(name="username", nullable = false)
 	private String username;
 	
-	@Column(name="password")
+	@Column(name="password", nullable = false)
 	private String password;
 	
-	@Column(name="email")
+	@Column(name="email", nullable = false)
 	private String email;
+	
+	@Column(name="enabled")
+	private int enabled = 1;
 
 	@OneToMany (mappedBy="user")
 	private List<Flashcard> flashcards = new ArrayList<Flashcard>();
@@ -70,6 +73,14 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}	
+	
+	public int getEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(int enabled) {
+		this.enabled = enabled;
+	}
 	
 	@Override
 	public String toString() {

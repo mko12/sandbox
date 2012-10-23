@@ -12,7 +12,7 @@
 	<a href="<c:url value='/ihelp/card/cards' />">Flashcard Management</a>
 	<br />
 	<br />
-	<form:form method="POST" action="/ihelp/card/update"
+	<form:form method="POST" action="/card/update"
 		commandName="flashcard">
 		<form:hidden path="id" />
 		<label><spring:message code="label.topic" />:</label>

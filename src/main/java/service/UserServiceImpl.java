@@ -45,6 +45,7 @@ public class UserServiceImpl implements UserService {
         userDAO.deleteUser(id);
     }
 
+    // @TODO - this is no longer needed and will be removed on next check-in
     @Transactional
 	public User verifyUser(User user) {
     	
@@ -65,6 +66,7 @@ public class UserServiceImpl implements UserService {
     	return loginUser;
 	}
 
+    // @TODO: might not need these two anymore either
 	public void setLoginStatus(LoginStatus loginStatus) {
 		this.loginStatus = loginStatus;
 	}

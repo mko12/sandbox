@@ -13,6 +13,7 @@ public interface UserService {
 	public User getUser(int id);
 	public void updateUser(User user);
     public void deleteUser(int id);
+    // @TODO: most likely the rest 3 methods are no longer needed
 	public User verifyUser(User user);
 	public void setLoginStatus(LoginStatus loginStatus);
 	public LoginStatus getLoginStatus();

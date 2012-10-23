@@ -11,7 +11,7 @@
 <br/>
  <h4>Logged in as: ${name}</h4>
  <br />
-Go to <a href="<c:url value='/user/users' />">User Management</a>
+Go to <a href="<c:url value='/ihelp/user/users' />">User Management</a>
 <br/>
  
 <form:form method="post" action="/ihelp/card/add" commandName="flashcard">
@@ -57,8 +57,8 @@ Go to <a href="<c:url value='/user/users' />">User Management</a>
         <td>${card.topic}</td>
         <td>${card.question}</td>
         <td>${card.answer}</td>
-        <td><a href="/ihelp/card/${card.id}">Update</a></td>
-        <td><a href="/ihelp/card/delete/${card.id}">delete</a></td>
+        <td><a href="details/${card.id}">view details</a></td>
+        <td><a href="delete/${card.id}">delete</a></td>
     </tr>
 </c:forEach>
 </table>

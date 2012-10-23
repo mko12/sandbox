@@ -4,8 +4,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -72,12 +70,14 @@ public class FlashcardController {
      * @param model
      * @return
      */
-    @RequestMapping("{id}")
-    public String getFlashcardDetails(@PathVariable("id") Integer id, Model model) {
+    @RequestMapping(value="/details/{id}", method=RequestMethod.GET)
+    public ModelAndView getFlashcardDetails(@PathVariable("id") Integer id) {
   
-    	model.addAttribute("id", Integer.toString(id)); 
-    	model.addAttribute("flashcard", flashcardSvc.getFlashcard(id));
-        return "flashcarddetails";
+		ModelAndView mav = new ModelAndView("flashcarddetails");
+		mav.addObject("id", Integer.toString(id)); 
+		mav.addObject("flashcard", flashcardSvc.getFlashcard(id));
+		
+        return mav;
     }
     
     /**
@@ -110,7 +110,7 @@ public class FlashcardController {
     public String deleteFlashcard(@PathVariable("flashcardId") Integer flashcardId) {
  
         flashcardSvc.deleteFlashcard(flashcardId);
-        return "redirect:/card/cards";
+        return "redirect:/ihelp/card/cards";
     }
     
 }

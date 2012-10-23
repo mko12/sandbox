@@ -6,9 +6,12 @@
 </head>
 <body>
  
-<h2>User Manager</h2>
+<h2>View and manage users</h2>
 <br/>
-Go to <a href="<c:url value='/card/cards' />">Flashcard Management</a>
+Go to <a href="<c:url value='/ihelp/card/cards' />">Flashcard Management</a>
+<br/>
+<br/>
+<h3>Add a new user (should be replaced with a registration page really)</h3>
 <br/>
 <form:form method="post" action="add.html" commandName="user">
     <table>
@@ -47,7 +50,7 @@ Go to <a href="<c:url value='/card/cards' />">Flashcard Management</a>
     	<td>${user.username}</td>
     	<td>${user.password}</td>
         <td>${user.email}</td>
-        <td><a href="details/${user.userId}">Update</a></td>
+        <td><a href="details/${user.userId}">view details</a></td>
         <td><a href="delete/${user.userId}">delete</a></td>
     </tr>
 </c:forEach>

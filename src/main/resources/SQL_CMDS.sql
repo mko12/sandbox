@@ -34,7 +34,6 @@ create table FLASHCARD
  FOREIGN KEY (FK_users) REFERENCES users (userid)
 )  ENGINE=INNODB ;
 
-
 -- inserts updated for spring security
 insert into users (userid, username, password, email, enabled)
 values(1, 'bob', 'ee11cbb19052e40b07aac0ca060c23ee', 'bob@domain.com', 1);
@@ -47,6 +46,7 @@ VALUES (1, 1, 'ROLE_USER');
 INSERT INTO user_roles (USER_ROLE_ID, USERID,AUTHORITY)
 VALUES (2, 2, 'ROLE_ADMIN');
 
-insert into FLASHCARD values(1, 'What is your name?', 'charlton', 'people', 1);
-insert into FLASHCARD values(2, 'Who is your boss?', 'myself', 'happy', 2);
-
+insert into FLASHCARD (fid, question, answer, topic, userid) values(1, 'What is your name?', 'charlton', 'people', 1);
+insert into FLASHCARD (fid, question, answer, topic, userid) values(2, 'Who is your boss?', 'myself', 'happy', 2);
+insert into FLASHCARD (fid, question, answer, topic, userid) values(3, 'What is the capital of Greece?', 'Athens', 'Geography', 1);
+insert into FLASHCARD (fid, question, answer, topic, userid) values(4, 'Hello', 'Hola', 'Languages', 2);

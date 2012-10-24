@@ -12,8 +12,7 @@
 	<a href="<c:url value='/ihelp/user/users' />">User Management</a>
 	<br />
 	<br />
-	<form:form method="POST" action="/user/update"
-		commandName="user">
+	<form:form method="post" action="../update" commandName="user">
 		<form:hidden path="userId" />
 		<label><spring:message code="label.username" />: ${user.username}</label>
 		
@@ -27,10 +26,9 @@
 		<form:input path="email" size="50" maxlength="50" />
 		<br />
 		<br />
-
-		<button type="submit" name="submit">Save Update</button>
-&nbsp;&nbsp;&nbsp;
-<a href="<c:url value='/ihelp/user/users' />"> Cancel </a>
+		<input type="submit" value="<spring:message code="label.update"/>"/>
+		&nbsp;&nbsp;&nbsp;
+		<a href="<c:url value='/ihelp/user/users' />"> Cancel </a>
 
 	</form:form>
 </body>

@@ -12,8 +12,7 @@
 	<a href="<c:url value='/ihelp/card/cards' />">Flashcard Management</a>
 	<br />
 	<br />
-	<form:form method="POST" action="/card/update"
-		commandName="flashcard">
+	<form:form method="post" action="../update" commandName="flashcard">
 		<form:hidden path="id" />
 		<label><spring:message code="label.topic" />:</label>
 		<form:input path="topic" size="50" maxlength="50" />
@@ -27,8 +26,7 @@
 		<form:input path="answer" size="50" maxlength="50" />
 		<br />
 		<br />
-
-		<button type="submit" name="submit">Save Update</button>
+		<input type="submit" value="<spring:message code="label.update"/>"/>
 &nbsp;&nbsp;&nbsp;
 <a href="<c:url value='/ihelp/card/cards' />"> Cancel </a>
 

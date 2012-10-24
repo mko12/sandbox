@@ -1,7 +1,10 @@
 package controller;
  
+import java.security.Principal;
+
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.ServletRequestDataBinder;
@@ -24,6 +27,8 @@ import entity.User;
 @RequestMapping("/card/*")
 public class FlashcardController {
  
+	protected static Logger logger = Logger.getLogger("controller");
+	
     @Autowired
     private FlashcardService flashcardSvc;
  
@@ -41,11 +46,17 @@ public class FlashcardController {
      * @return
      */
     @RequestMapping(value = "/cards", method=RequestMethod.GET)
-    public ModelAndView getFlashcards() {    	
-        ModelAndView mav = new ModelAndView("flashcard"); // this will load the view flashcard.jsp
+    public ModelAndView getFlashcards(Principal principal ) {    	
+        
+    	logger.debug("Received request to show all flashcards");
+    	
+    	String name = principal.getName();
+		
+    	ModelAndView mav = new ModelAndView("flashcard"); // this will load the view flashcard.jsp
         // now let's add objects to our model
         mav.addObject("flashcard", new Flashcard());    //Empty card
         mav.addObject("userList", userSvc.getUsers());
+        mav.addObject("username", name);
         mav.addObject("flashcardList", flashcardSvc.getFlashcards());
         return mav;
     }
@@ -59,10 +70,27 @@ public class FlashcardController {
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String addFlashcard(@ModelAttribute("flashcard") Flashcard flashcard) {
  
+    	logger.debug("Received request to add a flashcard");
+    	
         flashcardSvc.addFlashcard(flashcard);
-        return "redirect:/card/cards";
+        return "redirect:/ihelp/card/cards";
     }
 
+    /**
+     * Update a  flashcard
+     * 
+     * @param flashcard
+     * @return
+     */
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    public String updateFlashcard(@ModelAttribute("flashcard") Flashcard flashcard) {
+    	
+    	logger.debug("Received request to update a flashcard");
+    	
+        flashcardSvc.updateFlashcard(flashcard);
+        return "redirect:/ihelp/card/cards";
+    }
+    
     /**
      * Get the details of a specific flashcard
      * 
@@ -73,30 +101,12 @@ public class FlashcardController {
     @RequestMapping(value="/details/{id}", method=RequestMethod.GET)
     public ModelAndView getFlashcardDetails(@PathVariable("id") Integer id) {
   
+    	logger.debug("Received request to get flashcard details");
+    	
 		ModelAndView mav = new ModelAndView("flashcarddetails");
 		mav.addObject("id", Integer.toString(id)); 
 		mav.addObject("flashcard", flashcardSvc.getFlashcard(id));
 		
-        return mav;
-    }
-    
-    /**
-     * Update an existing flashcard
-     * 
-     * @param flashcard
-     * @return
-     */
-    @RequestMapping(value = "/update", method=RequestMethod.POST)
-    public ModelAndView updateFlashcard(@ModelAttribute("flashcard") Flashcard flashcard) {
-    	
-    	flashcardSvc.updateFlashcard(flashcard);
-    	
-    	ModelAndView mav = new ModelAndView("flashcard"); // this will load the view flashcard.jsp
-        // now let's add objects to our model
-        mav.addObject("flashcard", new Flashcard());    //Empty card
-        mav.addObject("userList", userSvc.getUsers());
-        mav.addObject("flashcardList", flashcardSvc.getFlashcards());
-        
         return mav;
     }
     
@@ -109,6 +119,9 @@ public class FlashcardController {
     @RequestMapping("/delete/{flashcardId}")
     public String deleteFlashcard(@PathVariable("flashcardId") Integer flashcardId) {
  
+    	String debugMessage = "Received request to delete a flashcard with id= " + flashcardId;
+    	logger.debug(debugMessage);
+    	
         flashcardSvc.deleteFlashcard(flashcardId);
         return "redirect:/ihelp/card/cards";
     }

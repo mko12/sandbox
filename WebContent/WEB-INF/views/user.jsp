@@ -7,6 +7,8 @@
 <body>
  
 <h2>View and manage users</h2>
+<a href="<c:url value='/ihelp/auth/logout' />"> Logout </a>
+<br/>
 <br/>
 Go to <a href="<c:url value='/ihelp/card/cards' />">Flashcard Management</a>
 <br/>

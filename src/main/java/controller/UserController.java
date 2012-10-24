@@ -2,9 +2,9 @@ package controller;
 
 import java.util.Map;
  
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,37 +13,26 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
  
 import service.UserService;
-
 import entity.User;
 
 @Controller
 @RequestMapping("/user/*")
 public class UserController {
  
+	protected static Logger logger = Logger.getLogger("controller");
+	
     @Autowired
     private UserService userSvc;
  
     @RequestMapping("/users")
     public String listUsers(Map<String, Object> map) {
  
+    	logger.debug("Received request to list all the USERS");
+    	
         map.put("user", new User());
         map.put("userList", userSvc.getUsers());
         return "user";
     }
- 
-    
-/**    @RequestMapping("/details/{userId}")
-    public String getUserDetails(@PathVariable("userId")
-    Integer userId, Model model) {
-  //  Map<String, Object> map) {
-  	
-    //	  map.put("user", userSvc.getUser(userId));
-     //     map.put("userId", Integer.toString(userId));
-    	model.addAttribute("userId", Integer.toString(userId)); 
-    	model.addAttribute("user", userSvc.getUser(userId));
-        return "userdetails";
-    }
-    */
     
     /**
 	 * Edit an existing User
@@ -53,6 +42,8 @@ public class UserController {
 	 */
 	@RequestMapping(value="/details/{userId}", method=RequestMethod.GET)
     public ModelAndView getUserDetails(@PathVariable("userId") Integer userId) { 
+		
+		logger.debug("Received request to get details for a USER");
 		
 		User user = userSvc.getUser(userId);
 	
@@ -68,8 +59,26 @@ public class UserController {
     public String addUser(@ModelAttribute("user")
     User user, BindingResult result) {
  
+    	logger.debug("Received request to add a USER");
+    	
         userSvc.addUser(user);
  
+        return "redirect:/ihelp/user/users";
+    }
+    
+    /**
+     * Update a  user
+     * 
+     * @param user
+     * @return
+     */
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    public String updateFlashcard(@ModelAttribute("user") User user) {
+    	
+    	logger.debug("Received request to update a user");
+    	
+    	userSvc.updateUser(user);
+    	 
         return "redirect:/ihelp/user/users";
     }
  
@@ -77,6 +86,9 @@ public class UserController {
     public String deleteUser(@PathVariable("userId")
     Integer userId) {
  
+    	String debugMessage = "Received request to delete a USER with id= " + userId;
+    	logger.debug(debugMessage);
+    	
         userSvc.deleteUser(userId);
  
         return "redirect:/ihelp/user/users";

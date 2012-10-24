@@ -7,14 +7,16 @@
 </head>
 <body>
  
-<h2>Flashcard Manager</h2>
+<h2>View and manage flashcards</h2>
+
+<a href="<c:url value='/ihelp/auth/logout' />"> Logout </a>
 <br/>
- <h4>Logged in as: ${name}</h4>
- <br />
+ <h4>Logged in as: ${username}</h4>
+<br />
 Go to <a href="<c:url value='/ihelp/user/users' />">User Management</a>
 <br/>
  
-<form:form method="post" action="/ihelp/card/add" commandName="flashcard">
+<form:form method="post" action="add" commandName="flashcard">
  
     <table>
     <tr>

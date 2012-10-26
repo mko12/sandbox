@@ -54,6 +54,7 @@ Go to <a href="<c:url value='/ihelp/card/cards' />">Flashcard Management</a>
         <td>${user.email}</td>
         <td><a href="details/${user.userId}">view details</a></td>
         <td><a href="delete/${user.userId}">delete</a></td>
+        <td><a href="json/${user.userId}">Get JSON</a></td>
     </tr>
 </c:forEach>
 </table>

@@ -23,16 +23,16 @@ CREATE TABLE `USER_ROLES` (
   CONSTRAINT `FK_user_roles` FOREIGN KEY (`userid`) REFERENCES `users` (`userid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-create table FLASHCARD
-(
- fid INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
- question VARCHAR(2000) NOT NULL,
- answer VARCHAR(2000) NOT NULL,
- topic VARCHAR(2000) NOT NULL,
- FK_users INT NOT NULL,
- INDEX (FK_users),
- FOREIGN KEY (FK_users) REFERENCES users (userid)
-)  ENGINE=INNODB ;
+CREATE TABLE `FLASHCARD` (
+ `fid` int(11) NOT NULL AUTO_INCREMENT,
+ `answer` varchar(255) DEFAULT NULL,
+ `question` varchar(255) DEFAULT NULL,
+ `topic` varchar(255) DEFAULT NULL,
+ `userid` int(11) DEFAULT NULL,
+ PRIMARY KEY (`fid`),
+ KEY `FK_flashcard_user` (`userid`),
+ CONSTRAINT `FK_flashcard_user` FOREIGN KEY (`userid`) REFERENCES `USERS` (`userid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- inserts updated for spring security
 insert into users (userid, username, password, email, enabled)

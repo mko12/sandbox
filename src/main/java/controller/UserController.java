@@ -10,9 +10,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
  
 import service.UserService;
+import to.UserTO;
 import entity.User;
 
 @Controller
@@ -65,6 +67,17 @@ public class UserController {
  
         return "redirect:/ihelp/user/users";
     }
+    
+    @RequestMapping(value="/json/{userId}", method = RequestMethod.GET, produces="application/json")
+	public @ResponseBody UserTO getUserInJSON(@PathVariable("userId") Integer userId) {
+    	String message = "======== Received request to return a USER in JSON. User ID: " + userId;
+    	logger.debug(message);
+    	
+    	User user = userSvc.getUser(userId);
+		// Convert User to UserTO
+    	UserTO userTO = new UserTO(user.getUserId(), user.getUsername(), user.getPassword(), user.getEmail()); 
+		return userTO;
+	} 
     
     /**
      * Update a  user

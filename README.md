@@ -13,3 +13,7 @@ export JPDA_HOST=localhost
 
 follow instructions in here:
 https://confluence.sakaiproject.org/display/BOOT/Debugging+Tomcat+Remotely+Using+Eclipse
+
+
+For SpringMVC Jackson integration:
+http://www.mkyong.com/spring-mvc/spring-3-mvc-and-json-example/

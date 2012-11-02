@@ -40,6 +40,7 @@
  <!-- Configures the annotation-driven Spring MVC Controller programming model.
 	Note that, with Spring 3.0, this tag works in Servlet MVC only!  -->
  <mvc:annotation-driven /> 
+ <mvc:resources mapping="/resources/**" location="/resources/" />
  
  <!-- Defining which view resolver to use -->
 	<bean id="jspViewResolver"

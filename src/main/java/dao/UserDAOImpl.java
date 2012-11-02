@@ -24,9 +24,9 @@ public class UserDAOImpl implements UserDAO {
 				.list();
 	}
 	
-	public User getUser(int id) {
+	public User getUser(int userId) {
 		Query query = sessionFactory.getCurrentSession().createQuery("from User where id = :id");
-		query.setParameter("id", id);
+		query.setParameter("id", userId);
 		return (User)query.uniqueResult();
 	}
 
@@ -34,9 +34,9 @@ public class UserDAOImpl implements UserDAO {
 		sessionFactory.getCurrentSession().update(user);
 	}
 
-	public void deleteUser(int id) {
+	public void deleteUser(int userId) {
 		User user = (User) sessionFactory.getCurrentSession().load(User.class,
-				id);
+				userId);
 		if (null != user) {
 			sessionFactory.getCurrentSession().delete(user);
 		}
@@ -48,5 +48,16 @@ public class UserDAOImpl implements UserDAO {
 				"from User where username = :username");
 		query.setParameter("username", user.getUsername());
 		return (User) query.uniqueResult();
+	}
+
+	public void addUserRole(User user, String authority) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	/** Return the authority */
+	public String getUserRole(int userId) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

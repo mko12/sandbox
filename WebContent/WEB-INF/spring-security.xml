@@ -37,7 +37,7 @@
 					from users where USERNAME=?" 
 				
 				authorities-by-username-query="
-					select u.username, ur.authority from users u, user_roles ur 
+					select u.username, ur.authority from users u, user_role ur 
 					where u.userid = ur.userid and u.username =?  " 		
 			/>   		
 	        <security:password-encoder ref="passwordEncoder"/>

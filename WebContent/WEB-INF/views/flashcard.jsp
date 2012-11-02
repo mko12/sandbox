@@ -3,6 +3,9 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
+   <!-- Include the bootstrap stylesheets -->
+    <link rel="stylesheet" href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css"/>
+
     <title>Flashcard Management</title>
     
     <!-- Include the bootstrap stylesheets -->
@@ -11,18 +14,14 @@
 </head>
 <body>
  
-<h2>View and manage flashcards</h2>
-
 <ul class="nav nav-pills">
   <li class="active"><a href="#">Flashcard Mgmt</a></li>
   <li><a href="<c:url value='/ihelp/user/users' />">User Mgmt</a></li>
   <li><a href="<c:url value='/ihelp/auth/logout' />">Logout</a></li>
 </ul>
-
-<br/>
  <h4>Logged in as: ${username}</h4>
 <br />
-
+<h2>View and manage flashcards</h2>
 <form:form method="post" action="add" commandName="flashcard" cssClass="form-horizontal">
   <div class="control-group">
     <form:label path="topic" cssClass="control-label"><spring:message code="label.topic"/></form:label>

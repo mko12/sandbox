@@ -9,9 +9,8 @@
 <head>
     <!-- Include the bootstrap stylesheets -->
     <link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.css"/>"/>
-
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Flashcard App - Login</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Flashcard App - Login</title>
 </head>
 <body>
 

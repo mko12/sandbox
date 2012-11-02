@@ -1,9 +1,11 @@
 package controller;
 
+import java.security.Principal;
 import java.util.Map;
  
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.encoding.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -26,13 +28,19 @@ public class UserController {
     @Autowired
     private UserService userSvc;
  
+    @Autowired
+	private PasswordEncoder passwordEncoder;
+    
     @RequestMapping("/users")
-    public String listUsers(Map<String, Object> map) {
+    public String listUsers(Map<String, Object> map, Principal principal) {
  
     	logger.debug("Received request to list all the USERS");
     	
+    	String name = principal.getName();
+    	
         map.put("user", new User());
         map.put("userList", userSvc.getUsers());
+        map.put("username", name);
         return "user";
     }
     
@@ -62,7 +70,7 @@ public class UserController {
     User user, BindingResult result) {
  
     	logger.debug("Received request to add a USER");
-    	
+    	user.setPassword(passwordEncoder.encodePassword(user.getPassword(), null));
         userSvc.addUser(user);
  
         return "redirect:/ihelp/user/users";

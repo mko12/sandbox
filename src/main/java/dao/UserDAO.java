@@ -7,9 +7,9 @@ import entity.User;
 public interface UserDAO {
 
 	public void addUser(User user);
-	public List<User> getAllUsers();
-	public User getUser(int id);
 	public void updateUser(User user);
-	public void deleteUser(int id);
+	public void deleteUser(int userId);
 	public User verifyUser(User user);
+	public User getUser(int userId);
+	public List<User> getAllUsers();
 }

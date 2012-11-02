@@ -46,7 +46,7 @@ public class FlashcardController {
      * @return
      */
     @RequestMapping(value = "/cards", method=RequestMethod.GET)
-    public ModelAndView getFlashcards(Principal principal ) {    	
+    public ModelAndView getFlashcards(Principal principal) {    	
         
     	logger.debug("Received request to show all flashcards");
     	
@@ -125,5 +125,4 @@ public class FlashcardController {
         flashcardSvc.deleteFlashcard(flashcardId);
         return "redirect:/ihelp/card/cards";
     }
-    
 }

@@ -13,9 +13,7 @@
  	 <li><a href="<c:url value='/ihelp/auth/logout' />">Logout</a></li>
  </ul>
 <h4>Logged in as: ${username}</h4>
-<h2>View and manage users</h2>
 
-<br/>
 <h3>Users</h3>
 <c:if  test="${!empty userList}">
 <table class="table table-striped">

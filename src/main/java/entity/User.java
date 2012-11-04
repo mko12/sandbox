@@ -33,7 +33,7 @@ public class User {
 	@Column(name="enabled")
 	private int enabled = 1;
 
-	@OneToOne(mappedBy="user", cascade={CascadeType.ALL})
+	@OneToOne(mappedBy="user", cascade={CascadeType.ALL})  // Deleting user will delete roles
 	private UserRole userRole;
 	
 	public UserRole getUserRole() {
@@ -44,7 +44,7 @@ public class User {
 		this.userRole = userRole;
 	}
 
-	@OneToMany (mappedBy="user")
+	@OneToMany (mappedBy="user", cascade={CascadeType.ALL}) // Deleting user will delete flashcards
 	private List<Flashcard> flashcards = new ArrayList<Flashcard>();
 	
 	public List<Flashcard> getFlashcards() {

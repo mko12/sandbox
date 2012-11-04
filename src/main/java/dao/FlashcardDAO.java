@@ -8,6 +8,7 @@ public interface FlashcardDAO {
 
 	public void addFlashcard(Flashcard card);
 	public List<Flashcard> getAllFlashCards();
+	public List<Flashcard> getUserFlashCards(int userId);
 	public Flashcard getFlashcard(int id);
 	public void updateFlashcard(Flashcard card);
 	public void deleteFlashcard(int id);

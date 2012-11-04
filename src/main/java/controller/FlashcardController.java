@@ -51,13 +51,20 @@ public class FlashcardController {
     	logger.debug("Received request to show all flashcards");
     	
     	String name = principal.getName();
-		
+    	User user = userSvc.getUser(name);
+		// Add user to session scope
+    	
+    	
     	ModelAndView mav = new ModelAndView("flashcard"); // this will load the view flashcard.jsp
         // now let's add objects to our model
         mav.addObject("flashcard", new Flashcard());    //Empty card
         mav.addObject("userList", userSvc.getUsers());
         mav.addObject("username", name);
-        mav.addObject("flashcardList", flashcardSvc.getFlashcards());
+        if (user != null) {
+        	mav.addObject("flashcardList", flashcardSvc.getUserFlashcards(user.getUserId()));		
+    	}
+    	
+     
         return mav;
     }
  

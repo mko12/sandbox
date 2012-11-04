@@ -31,7 +31,7 @@
 		<input id="j_password" name="j_password" type="password" class="span3"/>
 	</p>
 	
-	<input type="submit" value="Login" class="btn btn-primary"/>
+	<input type="submit" value="<spring:message code="label.loginuser"/>" class="btn btn-primary"/>
 	<a href="<c:url value='/ihelp/auth/register' />" class="btn"> <spring:message code="label.registeruser"/></a>
 	</form>
 </div>

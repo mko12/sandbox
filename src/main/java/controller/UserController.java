@@ -68,8 +68,9 @@ public class UserController {
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String addUser(@ModelAttribute("user")
     User user, BindingResult result) {
- 
-    	logger.debug("Received request to add a USER");
+    	String message = "======== Received request to add a USER. UserName:" + user.getUsername();
+    	logger.debug(message);
+    	
     	user.setPassword(passwordEncoder.encodePassword(user.getPassword(), null));
         userSvc.addUser(user);
  

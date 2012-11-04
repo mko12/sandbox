@@ -8,6 +8,7 @@ public interface FlashcardService {
 
 	public void addFlashcard(Flashcard card);
 	public List<Flashcard> getFlashcards();
+	public List<Flashcard> getUserFlashcards(int userId);
 	public Flashcard getFlashcard(int id);
 	public void updateFlashcard(Flashcard card);
     public void deleteFlashcard(int id);

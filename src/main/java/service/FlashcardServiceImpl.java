@@ -40,4 +40,9 @@ public class FlashcardServiceImpl implements FlashcardService {
     public void deleteFlashcard(int id) {
         flashcardDAO.deleteFlashcard(id);
     }
+
+    @Transactional
+	public List<Flashcard> getUserFlashcards(int userId) {
+		return flashcardDAO.getUserFlashCards(userId);
+	}
 }

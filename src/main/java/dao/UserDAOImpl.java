@@ -50,14 +50,9 @@ public class UserDAOImpl implements UserDAO {
 		return (User) query.uniqueResult();
 	}
 
-	public void addUserRole(User user, String authority) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	/** Return the authority */
-	public String getUserRole(int userId) {
-		// TODO Auto-generated method stub
-		return null;
+	public User getUser(String username) {
+		Query query = sessionFactory.getCurrentSession().createQuery("from User where username = :id");
+		query.setParameter("id", username);
+		return (User)query.uniqueResult();
 	}
 }

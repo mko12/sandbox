@@ -9,8 +9,7 @@
     <title>Flashcard Management</title>
     
     <!-- Include the bootstrap stylesheets -->
-    <link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.css"/>"/>
-    
+    <link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.css"/>"/> 
 </head>
 <body>
  
@@ -21,7 +20,7 @@
 </ul>
  <h4>Logged in as: ${username}</h4>
 <br />
-<h2>View and manage flashcards</h2>
+
 <form:form method="post" action="add" commandName="flashcard" cssClass="form-horizontal">
   <div class="control-group">
     <form:label path="topic" cssClass="control-label"><spring:message code="label.topic"/></form:label>

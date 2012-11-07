@@ -1,7 +1,8 @@
 package controller;
 
-import java.security.Principal;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
  
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,15 +33,18 @@ public class UserController {
 	private PasswordEncoder passwordEncoder;
     
     @RequestMapping("/users")
-    public String listUsers(Map<String, Object> map, Principal principal) {
+    public String listUsers(Map<String, Object> map, HttpServletRequest request) {
  
     	logger.debug("Received request to list all the USERS");
     	
-    	String name = principal.getName();
+    	// @TODO This needs to be moved to the header of the app eventually 
+    	User activeUser = (User)request.getSession().getAttribute("activeUser");
+    	logger.debug("Retrieve active user from session:");
+    	logger.debug(activeUser.getUsername());
     	
         map.put("user", new User());
         map.put("userList", userSvc.getUsers());
-        map.put("username", name);
+        map.put("username", activeUser.getUsername());
         return "user";
     }
     
@@ -74,7 +78,7 @@ public class UserController {
     	user.setPassword(passwordEncoder.encodePassword(user.getPassword(), null));
         userSvc.addUser(user);
  
-        return "redirect:/ihelp/user/users";
+        return "redirect:/ihelp/card/cards";
     }
     
     @RequestMapping(value="/json/{userId}", method = RequestMethod.GET, produces="application/json")

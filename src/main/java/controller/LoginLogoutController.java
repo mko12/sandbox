@@ -79,7 +79,6 @@ public class LoginLogoutController {
  	public String getRegisterPage(Map<String, Object> map) {
 		logger.debug("Received request to show register page");
 		 map.put("user", new User());
-	        map.put("userList", userSvc.getUsers());
 		// This will resolve to /WEB-INF/views/register.jsp
 		return "register";
 	}

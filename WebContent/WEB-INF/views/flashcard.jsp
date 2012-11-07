@@ -41,21 +41,14 @@
     </div>
   </div>
   <div class="control-group">
-    <form:label path="user" cssClass="control-label"><spring:message code="label.user"/></form:label>
-    <div class="controls">
-      <form:select path="user" items="${userList}" itemValue="userId"/>
-    </div>
-  </div>
-  <div class="control-group">
     <div class="controls">
       <button type="submit" class="btn"><spring:message code="label.addflashcard"/></button>
     </div>
   </div>
 </form:form>
  
-
-<h3>Flashcards</h3>
 <c:if  test="${!empty flashcardList}">
+<h3>Flashcards</h3>
 <table class="table table-striped">
 <tr>
     <th><spring:message code="label.topic"/></th>

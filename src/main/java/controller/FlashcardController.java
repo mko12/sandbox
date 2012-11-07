@@ -1,6 +1,8 @@
 package controller;
  
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -46,24 +48,36 @@ public class FlashcardController {
      * @return
      */
     @RequestMapping(value = "/cards", method=RequestMethod.GET)
-    public ModelAndView getFlashcards(Principal principal) {    	
+    public ModelAndView getFlashcards(HttpServletRequest request, Principal principal) {    	
         
     	logger.debug("Received request to show all flashcards");
-    	
-    	String name = principal.getName();
-    	User user = userSvc.getUser(name);
-		// Add user to session scope
-    	
-    	
+
     	ModelAndView mav = new ModelAndView("flashcard"); // this will load the view flashcard.jsp
         // now let's add objects to our model
         mav.addObject("flashcard", new Flashcard());    //Empty card
         mav.addObject("userList", userSvc.getUsers());
-        mav.addObject("username", name);
-        if (user != null) {
-        	mav.addObject("flashcardList", flashcardSvc.getUserFlashcards(user.getUserId()));		
-    	}
     	
+		// Add user to session scope if it is not already added
+        User activeUser = null;
+        if (request.getSession().getAttribute("aciveUser") == null) { 
+    		String name = principal.getName();
+        	activeUser = userSvc.getUser(name);
+    		request.getSession().setAttribute("activeUser", activeUser);
+    		logger.debug("ADDED USER TO SESSION ________");
+    	} else {
+    		// Retrieve user from session
+    		activeUser = (User)request.getSession().getAttribute("activeUser");
+    		logger.debug("USER ALREADY IN SESSION - GRABBING IT");
+    	}
+
+        mav.addObject("username", activeUser.getUsername());
+        List<Flashcard> cards = flashcardSvc.getUserFlashcards(activeUser.getUserId());
+        
+        if (cards == null) { // Do not return null, return empty list
+        	cards = new ArrayList <Flashcard>();
+        }
+        
+        mav.addObject("flashcardList", cards);		
      
         return mav;
     }
@@ -75,9 +89,13 @@ public class FlashcardController {
      * @return
      */
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String addFlashcard(@ModelAttribute("flashcard") Flashcard flashcard) {
+    public String addFlashcard(@ModelAttribute("flashcard") Flashcard flashcard, HttpServletRequest request) {
  
     	logger.debug("Received request to add a flashcard");
+    	User activeUser = (User)request.getSession().getAttribute("activeUser");
+    	
+    	flashcard.setUser(activeUser);
+    	logger.debug(activeUser.getUsername());
     	
         flashcardSvc.addFlashcard(flashcard);
         return "redirect:/ihelp/card/cards";
@@ -90,10 +108,14 @@ public class FlashcardController {
      * @return
      */
     @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public String updateFlashcard(@ModelAttribute("flashcard") Flashcard flashcard) {
+    public String updateFlashcard(@ModelAttribute("flashcard") Flashcard flashcard, HttpServletRequest request) {
     	
     	logger.debug("Received request to update a flashcard");
     	
+    	User activeUser = (User)request.getSession().getAttribute("activeUser");
+    	
+    	flashcard.setUser(activeUser);
+    	logger.debug(activeUser.getUsername());
         flashcardSvc.updateFlashcard(flashcard);
         return "redirect:/ihelp/card/cards";
     }
